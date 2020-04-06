@@ -2,12 +2,12 @@
 # coding: utf-8
 # qpy:2
 # erzeugt Montag, 06. April 2020 13:45 (C) 2020 von Leander Jedamus
-# modifiziert Montag, 06. April 2020 13:29 von Leander Jedamus
+# modifiziert Montag, 06. April 2020 15:35 von Leander Jedamus
 
 from __future__ import print_function
 import socketserver
 
-class sockserver(socketserver.BaseRequestHandler):
+class MyRequestHandler(socketserver.BaseRequestHandler):
 
   def handle(self):
     addr = self.client_address[0]
@@ -22,8 +22,8 @@ class sockserver(socketserver.BaseRequestHandler):
 
 def main():
   port = 50000
-  server = socketserver.ThreadingTCPServer(("", port),
-              socketserver)
+  server = socketserver.ThreadingTCPServer(("127.0.0.1", port),
+              MyRequestHandler)
   server.serve_forever()
 
 if __name__ == "__main__":
